@@ -11,32 +11,21 @@ call vundle#begin()
 "let Vundle manage Vundle, required
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 Plugin 'gmarik/Vundle.vim'
-"Auto indentation for python
-Plugin 'vim-scripts/indentpython.vim'
-
-"For better code folding
-Plugin 'tmhedberg/SimpylFold'
-"Auto complete
-Bundle 'Valloric/YouCompleteMe'
-"Check syntax on save of each file
+Plugin 'ekalinin/Dockerfile.vim'        "Docker syntax Plugin
+Plugin 'vim-scripts/indentpython.vim'   "Auto indentation for python
+Plugin 'tmhedberg/SimpylFold'           "For better code folding
+Plugin 'Valloric/YouCompleteMe'         "Auto complete
+Plugin 'flazz/vim-colorschemes'         "Color schemers for vim
 Plugin 'scrooloose/syntastic'
-"Pep-8 checking
-Plugin 'nvie/vim-flake8'
-"Plugin 'jnurmine/Zenburn'
-
-"Solarized color scheme
-Plugin 'altercation/vim-colors-solarized'
-"Nerd tree 
-Plugin 'scrooloose/nerdtree'
-"Nerd tree for tabs
-Plugin 'jistr/vim-nerdtree-tabs'
-"For searching
-Plugin 'kien/ctrlp.vim'
-"for git opeartions in vim
-Plugin 'tpope/vim-fugitive'
-"Status bar
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'scrooloose/nerdtree'            "Nerd Tree
+Plugin 'jistr/vim-nerdtree-tabs'        "Nerd tree for tabs
+Plugin 'kien/ctrlp.vim'                 "For searching
+Plugin 'tpope/vim-fugitive'             "for git opeartions in vim
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} "Status bar
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'fatih/vim-go' "Plugin for golang
+Plugin 'rakr/vim-one'
+Plugin 'avakhov/vim-yaml'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -74,10 +63,10 @@ let g:SimpylFold_docstring_preview=1
  set fileformat=unix
 
 "For full stack development
-"au BufNewFile,BufRead *.js, *.html, *.css
-"   \ set tabstop=2
-"    \ set softtabstop=2
-"   \ set shiftwidth=2
+au BufNewFile,BufRead *.js, *.html, *.css
+   \ set tabstop=2
+    \ set softtabstop=2
+   \ set shiftwidth=2
 
 ""Flagging extra spaces
 "au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
@@ -85,7 +74,6 @@ let g:SimpylFold_docstring_preview=1
 "Setting encoding of file to utf-8
 set encoding=utf-8
 
-""Customizations for auto complete
 
 "To remove auto complete window when done
 let g:ycm_autoclose_preview_window_after_completion=1
@@ -119,7 +107,7 @@ let python_highlight_all=1
 syntax on
 
 "To toggle between color schemes
-call togglebg#map("<F5>")
+"call togglebg#map("<F5>")
 
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
@@ -143,6 +131,9 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 map <S-E> :NERDTreeToggle<CR>
 
+"Use 256 colours (Use this setting only if your terminal supports 256
+" colours)
+set t_Co=256
 
 let g:solarized_termcolors=256
 let g:solarized_termcolors= 16 | 256 
@@ -153,19 +144,16 @@ let g:solarized_underline = 1 | 0
 let g:solarized_italic = 1 | 0 
 let g:solarized_contrast = "normal"| "high" or "low" 
 let g:solarized_visibility= "normal"| "high" or "low"
+
 syntax enable
-set background=dark
-colorscheme solarized
+colorscheme molokai
+"set background=dark
 
 "For powerline status
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 
-" Always show statusline
+"Always show statusline
 set laststatus=2
-
-"Use 256 colours (Use this setting only if your terminal supports 256
-" colours)
-set t_Co=256
 
 let g:flake8_show_in_gutter=1
 let g:flake8_show_quickfix=1
@@ -188,4 +176,4 @@ nnoremap td  :tabclose<CR>
 nnoremap th :tabnext<CR>
 nnoremap tl :tabprev<CR>
 nnoremap tn :tabnew<CR>
-
+set backspace=indent,eol,start
